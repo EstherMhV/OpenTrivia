@@ -4,24 +4,23 @@ import AwesomeButton from "react-native-really-awesome-button";
 import he from 'he';
 
 const QuizScreen = ({ route, navigation }) => {
+
     const [score, setScore] = useState(0);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [questions, setQuestions] = useState([]);
     const [isQuizOver, setIsQuizOver] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
-    navigation.setOptions({
-        headerStyle: {
-            backgroundColor: '#F3B700',
-        },
-        headerTintColor: 'black',
-        headerTitleStyle: {
-            fontWeight: 'bold',
-        },
-    });
-
     useEffect(() => {
-
+        navigation.setOptions({
+            headerStyle: {
+                backgroundColor: '#F3B700',
+            },
+            headerTintColor: 'black',
+            headerTitleStyle: {
+                fontWeight: 'bold',
+            },
+        });
 
         fetch(`https://opentdb.com/api.php?amount=50&category=${route.params.category}&difficulty=${route.params.difficulty}&type=multiple`)
             .then((response) => response.json())
@@ -45,8 +44,6 @@ const QuizScreen = ({ route, navigation }) => {
             setCurrentIndex(currentIndex + 1);
         }
     };
-
-
 
     const handleStopQuiz = () => {
         setIsQuizOver(true);
@@ -79,7 +76,6 @@ const QuizScreen = ({ route, navigation }) => {
                         textColor="black"
                         style={{ marginBottom: 20, width: 200, fontWeight: 'bold', }}
                         stretch
-
                     >
                         Retry
                     </AwesomeButton>
@@ -89,7 +85,6 @@ const QuizScreen = ({ route, navigation }) => {
                         textColor="black"
                         style={{ width: 200, fontWeight: 'bold', }}
                         stretch
-
                     >
                         Go to Home
                     </AwesomeButton>
@@ -97,8 +92,6 @@ const QuizScreen = ({ route, navigation }) => {
             </View>
         );
     }
-
-
 
     return (
         <View style={styles.container}>
@@ -172,7 +165,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-
 });
 
 export default QuizScreen;

@@ -8,15 +8,17 @@ import { Picker } from '@react-native-picker/picker';
 function OptionsScreen({ navigation }) {
 
 
-    navigation.setOptions({
-        headerStyle: {
-            backgroundColor: '#F3B700',
-        },
-        headerTintColor: 'black',
-        headerTitleStyle: {
-            fontWeight: 'bold',
-        },
-    });
+    useEffect(() => {
+        navigation.setOptions({
+            headerStyle: {
+                backgroundColor: '#F3B700',
+            },
+            headerTintColor: 'black',
+            headerTitleStyle: {
+                fontWeight: 'bold',
+            },
+        });
+    }, []);
 
 
     const [categories, setCategories] = useState([]);

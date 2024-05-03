@@ -1,28 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { Pressable, Image, Text, View, StyleSheet } from 'react-native';
-import AwesomeButton from "react-native-really-awesome-button";
+import React, { useEffect } from 'react';
+import { Image, Text, View, StyleSheet } from 'react-native';
 import { ThemedButton } from "react-native-really-awesome-button";
-
 
 function HomeScreen({ navigation }) {
     
-
-    navigation.setOptions({
-        headerStyle: {
-            backgroundColor: '#F3B700', 
-        },
-        headerTintColor: 'black', 
-        headerTitleStyle: {
-            fontWeight: 'bold',
-        },
-    });
+    useEffect(() => {
+        navigation.setOptions({
+            headerStyle: {
+                backgroundColor: '#F3B700', 
+            },
+            headerTintColor: 'black', 
+            headerTitleStyle: {
+                fontWeight: 'bold',
+            },
+        });
+    }, []);
 
     return (
         <View style={styles.container}>
-        <Image
-            style={styles.image}
-            source={require('../assets/home.jpg')} // Remplacez ceci par le chemin de votre image
-        />
+            <Image
+                style={styles.image}
+                source={require('../assets/home.jpg')} // Remplacez ceci par le chemin de votre image
+            />
             <ThemedButton 
                 name="bruce" 
                 type="anchor" 
