@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, Button, Text } from 'react-native';
-import PickerComponent from '../components/Picker';
+import { View, StyleSheet, Text } from 'react-native';
+;
 import { ThemedButton } from "react-native-really-awesome-button";
 
 import { Picker } from '@react-native-picker/picker';
@@ -38,18 +38,29 @@ function OptionsScreen({ navigation }) {
         setCategories(data.trivia_categories);
     };
 
+
+
     const startQuiz = () => {
-        navigation.navigate('QuizScreen', {
-            category: selectedCategory,
-            difficulty: selectedDifficulty,
-        });
+        if (selectedDifficulty === '') {
+            Alert.alert(
+                "Error",
+                "Please choose a difficulty before starting the quiz.",
+                [
+                    { text: "OK" }
+                ]
+            );
+        } else {
+            navigation.navigate('QuizScreen', {
+                category: selectedCategory,
+                difficulty: selectedDifficulty,
+            });
+        }
     };
 
     useEffect(() => {
         fetchCategories();
     }, []);
 
-    const handleProgress = (release) => setTimeout(release, 1000);
 
     return (
         <View style={styles.container}>
@@ -83,13 +94,8 @@ function OptionsScreen({ navigation }) {
                 name="bruce"
                 type="anchor"
                 style={styles.button}
-                onPress={() => {
-                    onPress = { startQuiz }
-                    handleProgress();
-                    navigation.navigate('Quiz', { difficulty: selectedDifficulty, category: selectedCategory });
-                }}
+                onPress={startQuiz} 
                 backgroundColor="#F3b700"
-
             >
                 <Text style={styles.buttonText}>Start Quiz</Text>
             </ThemedButton>
